@@ -5,6 +5,8 @@ RUN apt-get -y update && apt-get -y install --no-install-recommends \
         systemd-sysv \
         ifupdown \
         udev \
+        dbus \
+        mdadm \
     && rm -rf /var/lib/apt/lists/*
 
 RUN echo "root:root" | chpasswd
