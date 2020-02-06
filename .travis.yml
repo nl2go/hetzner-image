@@ -7,7 +7,7 @@ env:
 
 script:
   - docker build . -t "$IMAGE_NAME:$TRAVIS_BRANCH" -t "$IMAGE_NAME:latest"
-  - docker save --output image.tar.gz "$IMAGE_NAME:$TRAVIS_BRANCH"
+  - docker export --output image.tar.gz $(docker create "$IMAGE_NAME:$TRAVIS_BRANCH")
 
 deploy:
   provider: releases
