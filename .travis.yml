@@ -1,0 +1,22 @@
+---
+dist: bionic
+services: docker
+
+env:
+  - IMAGE_NAME='nl2go/hetzner-image'
+
+script:
+  - docker build . -t "$IMAGE_NAME:$TRAVIS_BRANCH" -t "$IMAGE_NAME:latest"
+  - docker save --output image.tar.gz "$IMAGE_NAME:$TRAVIS_BRANCH"
+
+deploy:
+  provider: releases
+  api_key: "$GITHUB_ROBOT_TOKEN"
+  file: image.tar.gz
+  skip_cleanup: true
+  on:
+    tags: true
+
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push "$IMAGE_NAME:$TRAVIS_BRANCH" && docker push "$IMAGE_NAME:latest"
