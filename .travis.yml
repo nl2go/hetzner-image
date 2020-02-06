@@ -11,7 +11,7 @@ script:
 
 deploy:
   provider: releases
-  api_key: "$GITHUB_ROBOT_TOKEN"
+  api_key: "$GITHUB_TOKEN"
   file: image.tar.gz
   skip_cleanup: true
   on:
