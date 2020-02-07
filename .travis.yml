@@ -7,12 +7,12 @@ env:
 
 script:
   - docker build . -t "$IMAGE_NAME:$TRAVIS_BRANCH" -t "$IMAGE_NAME:latest"
-  - docker export --output image.tar.gz $(docker create "$IMAGE_NAME:$TRAVIS_BRANCH")
+  - docker export --output Debian-102-stretch-64-n2g-0.0.1.tar.gz $(docker create "$IMAGE_NAME:$TRAVIS_BRANCH")
 
 deploy:
   provider: releases
   api_key: "$GITHUB_TOKEN"
-  file: image.tar.gz
+  file: Debian-102-stretch-64-n2g-0.0.1.tar.gz
   skip_cleanup: true
   on:
     tags: true
