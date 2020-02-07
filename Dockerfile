@@ -16,4 +16,6 @@ RUN apt-get -y update && apt-get -y install \
         grub \
     && rm -rf /var/lib/apt/lists/*
 
+COPY .docker/ /
+
 RUN echo "root:root" | chpasswd
