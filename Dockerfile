@@ -7,6 +7,7 @@ RUN apt-get -y update && apt-get -y install --no-install-recommends \
         udev \
         dbus \
         mdadm \
+        openssh-server \
     && rm -rf /var/lib/apt/lists/*
 
 RUN echo "root:root" | chpasswd
